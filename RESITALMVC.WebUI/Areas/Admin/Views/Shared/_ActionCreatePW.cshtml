@@ -1,0 +1,58 @@
+﻿@model RESITALMVC.WebUI.Areas.Admin.VM.RoomTypesCreateModel
+
+@if (Model != null)
+{
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Oda Oluştur</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form id="createForm">
+                <input type="hidden" name="HotelID" value="@Model.HotelID" />
+                <div class="form-group">
+                    <label>Oda Adı</label>
+                    <input type="text" class="form-control" name="RoomName" placeholder="Oda Adını Giriniz">
+                </div>
+                <div class="form-group">
+                    <label>Oda Açıklaması</label>
+                    <textarea placeholder="Oda Açıklamasını Giriniz." name="RoomDescription" class="form-control"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Oda Müsaitlik</label>
+                    <input type="number" class="form-control" name="RoomAvailability" placeholder="Oda Müsaitliğini Giriniz.">
+                </div>
+            </form>
+
+            <div class="errorDiv">   </div>
+
+        </div>
+        <div class="modal-footer">
+            <button id="actionCreateButton" type="button" class="btn btn-primary">Oluştur</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+        </div>
+    </div>
+}
+
+
+<script>
+    $('#actionCreateButton').click(function () {
+         $.ajax({
+
+             url: '@Url.Action("ActionCreate","Rooms2")',
+             type: "post",
+             data: $('#createForm').serialize()
+        })
+             .done(function (response) {
+                 if (response.Success) {
+                     location.reload();
+                 }
+                 else {
+                     $('.errorDiv').html(response.Message)
+                 }
+            })
+    });
+</script>
+

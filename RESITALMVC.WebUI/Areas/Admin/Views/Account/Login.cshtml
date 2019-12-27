@@ -1,0 +1,109 @@
+﻿@model  RESITALMVC.MODEL.Entities.User
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Resital</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Font Awesome -->
+    <link href="~/Context/plugins/fontawesome-free/css/all.min.css" rel="stylesheet" />
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- icheck bootstrap -->
+    <link rel="stylesheet" href="~/Context/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- Theme style -->
+    <link href="~/Context/dist/css/adminlte.min.css" rel="stylesheet" />
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+</head>
+<body class="hold-transition login-page">
+    <div class="login-box">
+        <div class="login-logo">
+            <a href="../../index2.html"><b>Resital</b></a>
+        </div>
+        <!-- /.login-logo -->
+        <div class="card">
+            <div class="card-body login-card-body">
+                <p class="login-box-msg">Giriş Bilgilerinizi Giriniz!</p>
+                @{
+                    if (TempData["Error"] != null)
+                    {
+                        <div class="alert alert-block alert-danger fade in">
+                            <button data-dismiss="alert" class="close close-sm" type="button"> <i class="icon-remove"></i> </button>
+                            @TempData["Error"]
+                        </div>
+                    }
+                }
+
+
+                @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { @id = "FrmLogin" }))
+                {
+                    <div class="input-group mb-3">
+                        @Html.ValidationMessageFor(Model => Model.Username, null, new { @class = "text-danger" })
+                        @Html.TextBoxFor(Model => Model.Username, new { @class = "form-control", @placeholder = "Kullanıcı Adı" })
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-envelope"></span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <span class="text-danger">@TempData["Error1"]</span>
+                    <div class="input-group mb-3">
+                        @Html.ValidationMessageFor(Model => Model.Password, null, new { @class = "text-danger" })
+                        @Html.PasswordFor(Model => Model.Password, new { @class = "form-control", @placeholder = "Şifre" })
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+
+                    </div>
+                    <span class="text-danger">@TempData["Error2"]</span>
+                    <div class="row">
+                        <div class="col-8">
+                            <div class="icheck-primary">
+                                <input type="checkbox" id="remember">
+                                <label for="remember">
+                                    Beni Hatırla
+                                </label>
+                            </div>
+                        </div>
+                        <!-- /.col -->
+                        <div class="col-4">
+                            <button type="submit" onclick="Login();" class="btn btn-primary btn-block toastrDefaultError">Giriş</button>
+                        </div>
+                        <!-- /.col -->
+                    </div>
+                }
+
+
+
+                <!-- /.social-auth-links -->
+
+                <p class="mb-1">
+                    <a href="forgot-password.html">Şifremi Unuttum</a>
+                </p>
+                <p class="mb-0">
+                    <a href="@Url.Action("Register","Account")" class="text-center">Yeni Kayıt</a>
+                </p>
+            </div>
+            <!-- /.login-card-body -->
+        </div>
+    </div>
+    <!-- /.login-box -->
+    <!-- jQuery -->
+    <script src="~/Context/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="~/Context/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/Context/dist/js/adminlte.min.js"></script>
+    <script src="~/Scripts/Login.js"></script>
+
+
+</body>
+</html>

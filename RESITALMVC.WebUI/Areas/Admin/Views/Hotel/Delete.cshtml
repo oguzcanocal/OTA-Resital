@@ -1,0 +1,16 @@
+﻿@model RESITALMVC.MODEL.Entities.Hotel
+@{
+    Layout = null;
+}
+
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3>@Model.HotelName silmek istediğinize emin misiniz?</h3>
+            </div>
+        </div>
+        <div class="panel-body">
+            @Html.ActionLink("Evet","DeleteConfirm", new { id = Model.ID}, new { @class = "btn btn-danger" })
+            @Html.ActionLink("Hayır", "Index", null, new { @class="btn btn-default"})
+        </div>
+    </div>

@@ -27,46 +27,61 @@
 
     <!-- Main content -->
     <section class="content">
-        <div class="row">
-            <div class="col-md-6">
-                <div class="card card-primary">
-                    <div class="card-header">
-                        <h3 class="card-title">Hotel Genel Bilgileri</h3>
 
-                        <div class="card-tools">
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
-                                <i class="fas fa-minus"></i>
-                            </button>
+        @using (Html.BeginForm("Edit", "Hotel"))
+        {
+            <div class="row">
+
+
+                <div class="col-md-12">
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Hotel Genel Bilgileri</h3>
+
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                            </div>
                         </div>
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="inputName">Hotel Kodu</label>
+                                        @Html.ValidationMessageFor(Model => Model.HotelCode, null, new { @class = "text-danger" })
+                                        @Html.TextBoxFor(Model => Model.HotelCode, new { @class = "form-control" })
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputName">Hotel Adı</label>
+                                        @Html.ValidationMessageFor(Model => Model.HotelName, null, new { @class = "text-danger" })
+                                        @Html.TextBoxFor(Model => Model.HotelName, new { @class = "form-control" })
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputDescription">Hotel Adresi</label>
+                                        @Html.ValidationMessageFor(Model => Model.HotelAdress, null, new { @class = "text-danger" })
+                                        @Html.TextBoxFor(Model => Model.HotelAdress, new { @class = "form-control" })
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.card-body -->
                     </div>
-                    <div class="card-body">
-                        <div class="form-group">
-                            <label for="inputName">Hotel Kodu</label>
-                            @Html.ValidationMessageFor(Model => Model.HotelCode, null, new { @class = "text-danger" })
-                            @Html.TextBoxFor(Model => Model.HotelCode, new { @class = "form-control" })
-                        </div>
-                        <div class="form-group">
-                            <label for="inputName">Hotel Adı</label>
-                            @Html.ValidationMessageFor(Model => Model.HotelName, null, new { @class = "text-danger" })
-                            @Html.TextBoxFor(Model => Model.HotelName, new { @class ="form-control" })
-                        </div>
-                        <div class="form-group">
-                            <label for="inputDescription">Hotel Adresi</label>
-                            @Html.ValidationMessageFor(Model => Model.HotelAdress, null, new { @class = "text-danger" })
-                            @Html.TextBoxFor(Model => Model.HotelAdress, new { @class = "form-control" })
-                        </div>
+                    <div class="col-md-12">
+                        <a href=@Url.Action("Index","Hotel") class="btn btn-secondary">İptal</a>
+                        <input type="submit" value="Kaydet" class="btn btn-success float-right">
                     </div>
-                    <!-- /.card-body -->
+                    <!-- /.card -->
                 </div>
-                <!-- /.card -->
+
+
+
+
             </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <a href="#" class="btn btn-secondary">Cancel</a>
-                <input type="submit" value="Save Changes" class="btn btn-success float-right">
-            </div>
-        </div>
+
+        }
+
+
     </section>
     <!-- /.content -->
     <!-- /.content-wrapper -->

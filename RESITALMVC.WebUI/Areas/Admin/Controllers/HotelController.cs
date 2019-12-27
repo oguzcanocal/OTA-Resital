@@ -1,8 +1,11 @@
-﻿using RESITALMVC.MODEL.Entities;
+﻿using RESITALMVC.DAL.Context;
+using RESITALMVC.MODEL.Entities;
 using RESITALMVC.SERVICE.Option;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.ApplicationServices;
 using System.Web.Mvc;
@@ -12,9 +15,10 @@ namespace RESITALMVC.WebUI.Areas.Admin.Controllers
     public class HotelController : Controller
     {
         HotelService db = new HotelService();
+        ResitalContext rs = new ResitalContext();
         public ActionResult Index()
         {
-            return View(db.GetAll());
+            return View(rs.Hotels.ToList());
         }
 
 
@@ -51,7 +55,7 @@ namespace RESITALMVC.WebUI.Areas.Admin.Controllers
         public ActionResult Edit(Guid id)
         {
 
-            return View(db.GetById(id));
+            return View(rs.Hotels.Find(id));
         }
 
         [HttpPost]
@@ -61,8 +65,8 @@ namespace RESITALMVC.WebUI.Areas.Admin.Controllers
             {
                 try
                 {
-                    var activationCodeHotel = db.GetById(model.ID);
-                    db.Update(activationCodeHotel);
+                    rs.Entry(model).State = EntityState.Modified;
+                    rs.SaveChanges();
                     return RedirectToAction("Index", "Hotel");
                 }
                 catch (Exception e)
@@ -80,24 +84,24 @@ namespace RESITALMVC.WebUI.Areas.Admin.Controllers
 
         public ActionResult Delete(Guid id)
         {
-            var deleted = db.GetById(id);
-            return View(deleted);
-        }
-
-        [HttpPost]
-        public ActionResult Delete(Hotel model)
-        {
-            try
+            if (id == null)
             {
-                db.Remove(model);
+                TempData["ErrorMessage"] = "ID boş olamaz";
                 return RedirectToAction("Index", "Hotel");
             }
-            catch (Exception e)
-            {
 
-                ViewBag.Error = e.InnerException;
-                return View();
-            }
+            Hotel hotel = rs.Hotels.Find(id);
+            
+            return View(hotel);
+        }
+
+
+        public ActionResult DeleteConfirm(Guid id)
+        {
+            Hotel hotel = rs.Hotels.Find(id);
+            rs.Hotels.Remove(hotel);
+            rs.SaveChanges();
+            return RedirectToAction("Index");
         }
 
 

@@ -27,7 +27,7 @@ namespace RESITALMVC.WebUI.Areas.Admin.Controllers
             return PartialView("_RoomListing", model);
         }
 
-        [HttpGet]
+
         public PartialViewResult ActionCreate(Guid HotelID)
         {
 

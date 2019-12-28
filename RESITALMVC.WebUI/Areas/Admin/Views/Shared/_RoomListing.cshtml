@@ -21,8 +21,8 @@
                         <td>@item.RoomDescription</td>
                         <td>@item.RoomAvailability</td>
                         <td>
-                            <button type="button" class="btn btn-primary">Edit</button>
-                            <button type="button" class="btn btn-secondary">Delete</button>
+                            <a href=@Url.Action("Edit","Rooms2", new { id = item.ID}) class="btn btn-primary">Güncelle</a>
+                            <a href=@Url.Action("Delete","Rooms2", new { id = item.ID}) class="btn btn-danger">Sil</a>
                         </td>
                     </tr>
                 }

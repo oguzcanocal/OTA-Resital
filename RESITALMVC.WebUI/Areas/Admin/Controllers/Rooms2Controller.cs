@@ -1,8 +1,10 @@
-﻿using RESITALMVC.MODEL.Entities;
+﻿using RESITALMVC.DAL.Context;
+using RESITALMVC.MODEL.Entities;
 using RESITALMVC.SERVICE.Option;
 using RESITALMVC.WebUI.Areas.Admin.VM;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -13,6 +15,7 @@ namespace RESITALMVC.WebUI.Areas.Admin.Controllers
     {
         RoomService rs = new RoomService();
         HotelService hs = new HotelService();
+        ResitalContext context = new ResitalContext();
         public ActionResult Index()
         {
             return View();
@@ -63,6 +66,42 @@ namespace RESITALMVC.WebUI.Areas.Admin.Controllers
             }
 
             return json;
+        }
+
+        public ActionResult Edit(Guid id)
+        {
+            Room room = context.Rooms.Find(id);
+            
+
+            return View(room);
+        }
+
+
+        [HttpPost]
+        public ActionResult Edit(Room model)
+        {
+            
+            context.Entry(model).State = EntityState.Modified;
+            
+
+            context.SaveChanges();
+            return RedirectToAction("Index", "Rooms2", new { model.HotelID });
+        }
+
+
+        public ActionResult Delete(Guid id)
+        {
+            Room room = context.Rooms.Find(id);
+
+            return View(room);
+        }
+
+        public ActionResult DeleteConfirm(Guid id)
+        {
+            Room room = context.Rooms.Find(id);
+            context.Rooms.Remove(room);
+            context.SaveChanges();
+            return RedirectToAction("Index", "Rooms2", new { room.HotelID });
         }
 
     }

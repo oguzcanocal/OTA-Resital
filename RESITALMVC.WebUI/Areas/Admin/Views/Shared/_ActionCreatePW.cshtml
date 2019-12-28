@@ -41,7 +41,7 @@
     $('#actionCreateButton').click(function () {
          $.ajax({
 
-             url: '@Url.Action("ActionCreate","Rooms2")',
+             url: '@Url.Action("ActionCreate", "Rooms2")',
              type: "post",
              data: $('#createForm').serialize()
         })

@@ -9,6 +9,7 @@ namespace RESITALMVC.CORE.Entity
 {
     public interface IEntity<T>
     {
+        [Key]
         T ID { get; set; }
     }
 }

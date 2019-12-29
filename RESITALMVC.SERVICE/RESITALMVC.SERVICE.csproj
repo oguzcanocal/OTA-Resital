@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="Base\BaseService.cs" />
     <Compile Include="Option\HotelService.cs" />
+    <Compile Include="Option\RateService.cs" />
     <Compile Include="Option\RoomService.cs" />
     <Compile Include="Option\UserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

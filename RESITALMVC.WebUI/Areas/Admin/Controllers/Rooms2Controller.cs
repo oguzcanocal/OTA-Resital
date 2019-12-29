@@ -14,7 +14,6 @@ namespace RESITALMVC.WebUI.Areas.Admin.Controllers
     public class Rooms2Controller : Controller
     {
         RoomService rs = new RoomService();
-        HotelService hs = new HotelService();
         ResitalContext context = new ResitalContext();
         public ActionResult Index()
         {

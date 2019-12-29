@@ -18,6 +18,7 @@ namespace RESITALMVC.MODEL.Entities
 
         public Guid HotelID { get; set; }
         public virtual Hotel Hotel { get; set; }
+        public virtual List<Rate> Rates { get; set; } 
 
     }
 }

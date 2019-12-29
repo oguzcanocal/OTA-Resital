@@ -1,0 +1,115 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutPage.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>AdminLTE 3 | Project Edit</title>
+    <!-- Tell the browser to be responsive to screen width -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Font Awesome -->
+    <link href="~/Context/plugins/fontawesome-free/css/all.min.css" rel="stylesheet" />
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href="~/Context/dist/css/adminlte.min.css">
+    <!-- Google Font: Source Sans Pro -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+    <script src="~/Context/plugins/jquery/jquery.min.js"></script>
+</head>
+<body class="hold-transition sidebar-mini">
+    <!-- Site wrapper -->
+    <div class="wrapper">
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1>Fiyat Planı Ekleme</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">AnaSayfa</a></li>
+                                <li class="breadcrumb-item active">Fiyat Planı Ekleme/li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
+            </section>
+            <div class="row">
+                <div class="col-md-12 card-body" style="margin-bottom:15px">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Fiyat Planı Adı">
+                        <div class="input-group-append" id="button-addon4">
+                            <button class="btn btn-outline-primary" type="button">Ara</button>
+                            <button class="btn btn-outline-secondary" type="button">Hepsini Sil</button>
+                            <button id="createButton" class="btn btn-outline-success" type="button" data-toggle="modal" data-target="#ActionCreateModal">Fiyat Planı Oluştur</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Main content -->
+            <section class="content">
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- /.card -->
+                        <div class="card card-info">
+                            <div class="card-header">
+                                <h3 class="card-title">Fiyat Planı</h3>
+                            </div>
+                            <div class="card-body p-0">
+                                @{ Html.RenderAction("Listing", "Rate", new { RoomID = Request.QueryString["RoomID"] }); }
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <!-- /.card -->
+                    </div>
+                </div>
+            </section>
+
+
+
+            <!-- /.content -->
+        </div>
+        <!-- /.content-wrapper -->
+        <!-- Control Sidebar -->
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+        </aside>
+        <!-- /.control-sidebar -->
+    </div>
+    <!-- ./wrapper -->
+    <!-- jQuery -->
+    <!-- Bootstrap 4 -->
+    <script src="~/Context/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/Context/dist/js/adminlte.min.js"></script>
+    <!-- AdminLTE for demo purposes -->
+    <script src="~/Context/dist/js/demo.js"></script>
+</body>
+</html>
+
+
+<script>
+
+    $('#createButton').click(function () {
+        $.ajax({
+
+            url:'@Url.Action("Create","Rate", new { RoomID = Request.QueryString["RoomID"] })',
+        })
+            .done(function (response) {
+                $("#ActionCreateModal .modal-dialog").html(response)
+            })
+
+    });
+
+</script>
+

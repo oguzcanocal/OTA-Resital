@@ -1,0 +1,49 @@
+﻿@model RESITALMVC.WebUI.Areas.Admin.VM.RateTypesCreateModel
+
+@if (Model != null)
+{
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">Oda Oluştur</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <form id="createForm">
+                <input type="hidden" name="RoomID" value="@Model.RoomID" />
+                <div class="form-group">
+                    <label>Fiyat Planı</label>
+                    <input type="text" class="form-control" name="RateName" placeholder="Fiyat Planı Giriniz">
+                </div>
+            </form>
+
+            <div class="errorDiv">   </div>
+
+        </div>
+        <div class="modal-footer">
+            <button id="actionCreateButton" type="button" class="btn btn-primary">Oluştur</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Kapat</button>
+        </div>
+    </div>
+}
+
+
+<script>
+    $('#actionCreateButton').click(function () {
+         $.ajax({
+
+             url: '@Url.Action("Create", "Rate")',
+             type: "post",
+             data: $('#createForm').serialize()
+        })
+             .done(function (response) {
+                 if (response.Success) {
+                     location.reload();
+                 }
+                 else {
+                     $('.errorDiv').html(response.Message)
+                 }
+            })
+    });
+</script>

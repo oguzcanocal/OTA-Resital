@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Entities\Hotel.cs" />
+    <Compile Include="Entities\Rate.cs" />
     <Compile Include="Entities\Room.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="Enum\Role.cs" />

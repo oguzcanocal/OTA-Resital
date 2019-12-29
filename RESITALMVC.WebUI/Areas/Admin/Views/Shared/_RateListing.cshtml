@@ -1,0 +1,46 @@
+﻿@model RESITALMVC.WebUI.Areas.Admin.VM.RateTypesModel
+
+@if (Model != null && Model.RateTypes != null && Model.RateTypes.Count() > 0)
+{
+    <div class="card-body p-0">
+        <table id="roomTable" class="table">
+            <thead>
+                <tr>
+                    <th>Fiyat Planı</th>
+                </tr>
+            </thead>
+            <tbody>
+
+
+                @foreach (var item in Model.RateTypes)
+                {
+                    <tr>
+                        <td>@item.RateName</td>
+                        <td>
+                            <a href=@Url.Action("Edit","Rate", new { id = item.ID}) class="btn btn-primary">Güncelle</a>
+                            <a href=@Url.Action("Delete","Rate", new { id = item.ID}) class="btn btn-danger">Sil</a>
+                        </td>
+                    </tr>
+                }
+
+
+            </tbody>
+        </table>
+    </div>
+}
+
+else
+{
+    <div class="alert alert-secondary" role="alert" style="margin:15px">
+        Fiyat Planı Girilmemiştir.
+    </div>
+}
+
+
+<!-- Modal -->
+<div class="modal fade" id="ActionCreateModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+
+    </div>
+</div>
+

@@ -23,6 +23,7 @@
                         <td>
                             <a href=@Url.Action("Edit","Rooms2", new { id = item.ID}) class="btn btn-primary">Güncelle</a>
                             <a href=@Url.Action("Delete","Rooms2", new { id = item.ID}) class="btn btn-danger">Sil</a>
+                            <a href=@Url.Action("Index","Rate", new { RoomID = item.ID}) class="btn btn-success">Fiyat Planı Oluştur</a>
                         </td>
                     </tr>
                 }

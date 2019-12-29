@@ -1,13 +1,14 @@
-﻿@model RESITALMVC.MODEL.Entities.Room
+﻿@model RESITALMVC.MODEL.Entities.Rate
 @{
     Layout = null;
 }
+
 
 <h2>@ViewBag.Title</h2>
 <div class="row">
     <div class="panel panel-default">
         <div class="panel-heading">
-            <h3>@Model.RoomName silmek istediğinize emin misiniz?</h3>
+            <h3>@Model.RateName silmek istediğinize emin misiniz?</h3>
         </div>
         <div class="panel-body">
             @Html.ActionLink("Evet", "DeleteConfirm", new { id = Model.ID }, new { @class = "btn btn-danger" })

@@ -13,11 +13,10 @@ namespace RESITALMVC.MAP.Map
         public RateMap()
         {
             ToTable("dbo.Rates");
+            Property(i => i.RateID).IsOptional();
             Property(i => i.RateName).IsOptional();
-            Property(i => i.StartDate).IsOptional();
-            Property(i => i.EndDate).IsOptional();
-            Property(i => i.AdultPrice).IsOptional();
-            Property(i => i.KidPrice).IsOptional();
+
+
         }
 
 

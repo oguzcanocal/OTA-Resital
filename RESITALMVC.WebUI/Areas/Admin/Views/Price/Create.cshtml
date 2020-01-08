@@ -1,0 +1,119 @@
+﻿@model RESITALMVC.MODEL.Entities.Price
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutPage.cshtml";
+}
+
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
+<link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var minDate = new Date();
+        $('.start-date-picker').datepicker({
+            format: "dd-M-yy",
+            minDate: minDate,
+            changeMonth: true,
+            changeYear: true,
+            onClose: function (selectedDate) {
+                $('.end-date-picker').datepicker("option", "minDate", "selectedDate");
+            }
+
+        });
+         $('.end-date-picker').datepicker({
+            format: "dd-M-yy",
+            minDate: minDate,
+            changeMonth: true,
+            changeYear: true,
+            onClose: function (selectedDate) {
+                $('.start-date-picker').datepicker("option", "minDate", "selectedDate");
+            }
+
+        });
+    });
+        
+
+</script>
+
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Fiyat Ekleme</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Ana Sayfa</a></li>
+                        <li class="breadcrumb-item active">Fiyat Ekleme</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+        @using (Html.BeginForm("Create", "Price", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card card-primary">
+                        <div class="card-header">
+                            <h3 class="card-title">Fiyat Ekleme</h3>
+
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip" title="Collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                            </div>
+                        </div>
+
+
+                        <div class="card-body">
+                            <div class="form-group">
+                                <input type="hidden" name="RateID" value="@Model.RateID" />
+                                <label for="inputClientCompany">Başlangıç Tarihi</label>
+                                @Html.ValidationMessageFor(Model => Model.StartDate, null, new { @class = "text-danger" })
+                                @Html.TextBoxFor(Model => Model.StartDate, new { @class = "form-control start-date-picker", @placeholder = "Başlangıç Tarihi", htmlAttributes = new { @readonly = "true", Value = Model.StartDate.ToString("dd-MMM-yyyy") } })
+                            </div>
+                            <div class="form-group">
+                                <label for="inputClientCompany">Bitiş Tarihi</label>
+                                @Html.ValidationMessageFor(Model => Model.EndDate, null, new { @class = "text-danger" })
+                                @Html.TextBoxFor(Model => Model.EndDate, new { @class = "form-control end-date-picker", @placeholder = "Bitiş Tarihi", htmlAttributes = new { @readonly = "true", Value = Model.StartDate.ToString("dd-MMM-yyyy") } })
+                            </div>
+                            <div class="form-group">
+                                <label for="inputName">Yetişkin Ücreti</label>
+                                @Html.ValidationMessageFor(Model => Model.AdultPrice, null, new { @class = "text-danger" })
+                                @Html.TextBoxFor(Model => Model.AdultPrice, new { @class = "form-control", @placeholder = "Yetişkin Ücreti" })
+                            </div>
+                            <div class="form-group">
+                                <label for="inputDescription">Çocuk Fiyatı</label>
+                                @Html.ValidationMessageFor(Model => Model.KidPrice, null, new { @class = "text-danger" })
+                                @Html.TextBoxFor(Model => Model.KidPrice, new { @class = "form-control", @placeholder = "Çocuk Ücreti" })
+                            </div>
+                        </div>
+
+
+                        <!-- /.card-body -->
+                    </div>
+                    <!-- /.card -->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-12">
+                    <a href="#" class="btn btn-secondary">İptal Et</a>
+                    <button type="submit" class="btn btn-success float-right">Oluştur</button>
+                </div>
+            </div>
+        }
+
+
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

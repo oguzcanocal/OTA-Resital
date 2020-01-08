@@ -14,12 +14,28 @@
 
     <!-- Font Awesome Icons -->
     <link href="~/Context/plugins/fontawesome-free/css/all.min.css" rel="stylesheet" />
-    <!-- IonIcons -->
-    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="~/Context/dist/css/adminlte.min.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+    <link href="~/Content/themes/base/datepicker.css" rel="stylesheet" />
+    <link href="~/Context/plugins/daterangepicker/daterangepicker.css" rel="stylesheet" />
+
+    <!-- ./wrapper -->
+    <!-- REQUIRED SCRIPTS -->
+    <!-- jQuery -->
+    <script src="~/Context/plugins/jquery/jquery.min.js"></script>
+    <script src="~/Context/plugins/jquery-ui/jquery-ui.min.js"></script>
+    <script src="~/Context/plugins/daterangepicker/daterangepicker.js"></script>
+    <!-- Bootstrap -->
+    <script src="~/Context/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- AdminLTE -->
+    <script src="~/Context/dist/js/adminlte.js"></script>
+
+    <!-- OPTIONAL SCRIPTS -->
+    <script src="~/Context/plugins/chart.js/Chart.min.js"></script>
+    <script src="~/Context/dist/js/demo.js"></script>
+    <script src="~/Context/dist/js/pages/dashboard3.js"></script>
 </head>
 <!--
 BODY TAG OPTIONS:
@@ -72,7 +88,6 @@ to get the desired effect
                         <a href="#" class="dropdown-item">
                             <!-- Message Start -->
                             <div class="media">
-                                <img src="dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
                                 <div class="media-body">
                                     <h3 class="dropdown-item-title">
                                         Brad Diesel
@@ -659,19 +674,7 @@ to get the desired effect
     </footer>
     </div>
 
-    <!-- ./wrapper -->
-    <!-- REQUIRED SCRIPTS -->
-    <!-- jQuery -->
-    <script src="~/Context/plugins/jquery/jquery.min.js"></script>
-    <!-- Bootstrap -->
-    <script src="~/Context/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <!-- AdminLTE -->
-    <script src="~/Context/dist/js/adminlte.js"></script>
 
-    <!-- OPTIONAL SCRIPTS -->
-    <script src="~/Context/plugins/chart.js/Chart.min.js"></script>
-    <script src="~/Context/dist/js/demo.js"></script>
-    <script src="~/Context/dist/js/pages/dashboard3.js"></script>
 </body>
 </html>
 @RenderSection("scripts", required: false)

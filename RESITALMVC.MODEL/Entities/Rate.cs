@@ -9,14 +9,14 @@ namespace RESITALMVC.MODEL.Entities
 {
     public class Rate:CoreEntity
     {
+        public Guid RateID  { get; set; }
         public string RateName { get; set; }
-        public DateTime? StartDate { get; set; }
-        public DateTime? EndDate { get; set; }
-        public double? AdultPrice { get; set; }
-        public double? KidPrice { get; set; }
+       
 
         public Guid RoomID { get; set; }
         public virtual Room Rooms   { get; set; }
+        public virtual List<Price> Price { get; set; }
+
 
     }
 }

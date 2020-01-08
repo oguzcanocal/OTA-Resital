@@ -92,5 +92,6 @@ namespace RESITALMVC.WebUI.Areas.Admin.Controllers
             return RedirectToAction("Index", "Rate", new { rate.RoomID });
         }
 
+
     }
 }

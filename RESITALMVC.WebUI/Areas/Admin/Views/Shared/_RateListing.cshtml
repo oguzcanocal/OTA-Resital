@@ -19,6 +19,7 @@
                         <td>
                             <a href=@Url.Action("Edit","Rate", new { id = item.ID}) class="btn btn-primary">Güncelle</a>
                             <a href=@Url.Action("Delete","Rate", new { id = item.ID}) class="btn btn-danger">Sil</a>
+                            <a href=@Url.Action("Create","Price", new { RateID = item.ID }) class="btn btn-success">Fiyat Gir</a>
                         </td>
                     </tr>
                 }

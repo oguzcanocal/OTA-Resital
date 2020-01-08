@@ -1,0 +1,70 @@
+﻿@model IEnumerable<RESITALMVC.MODEL.Entities.Price>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutPage.cshtml";
+}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Fiyat Ekleme</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a href="#">Ana Sayfa</a></li>
+                        <li class="breadcrumb-item active">Fiyat Ekleme</li>
+                    </ol>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </section>
+
+
+    @if (Model != null)
+    {
+        <div class="card-body p-0">
+            <table id="roomTable" class="table">
+                <thead>
+                    <tr>
+                        <th>Başlangıç Tarihi</th>
+                        <th>Bitiş Tarihi</th>
+                        <th>Yetişkin Fiyatı</th>
+                        <th>Çocuk Fiyatı</th>
+                    </tr>
+                </thead>
+                <tbody>
+
+
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.StartDate</td>
+                            <td>@item.EndDate</td>
+                            <td>@item.AdultPrice</td>
+                            <td>@item.KidPrice</td>
+                            <td>
+                                <a href=@Url.Action("Edit","Rate", new { id = item.ID}) class="btn btn-primary">Güncelle</a>
+                                <a href=@Url.Action("Delete","Rate", new { id = item.ID}) class="btn btn-danger">Sil</a>
+                                <a href=@Url.Action("Index","Price", new { id = item.ID}) class="btn btn-success">Fiyat Gir</a>
+                            </td>
+                        </tr>
+                    }
+
+
+                </tbody>
+            </table>
+        </div>
+    }
+
+    else
+    {
+        <div class="alert alert-secondary" role="alert" style="margin:15px">
+            Fiyat Girilmemiştir.
+        </div>
+    }
+
+</div>

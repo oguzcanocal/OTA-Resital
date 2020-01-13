@@ -1930,8 +1930,6 @@
     <Content Include="Areas\Admin\Views\Rate\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Rate\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Rate\Delete.cshtml" />
-    <Content Include="Areas\Admin\Views\Price\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Price\Create.cshtml" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
@@ -2007,6 +2005,8 @@
     <Content Include="Content\bootstrap\bootstrap.less" />
     <Content Include="Content\bootstrap\badges.less" />
     <Content Include="Content\bootstrap\alerts.less" />
+    <Content Include="Areas\Admin\Views\Price\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_CalendarPrice.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

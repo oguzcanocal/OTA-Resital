@@ -15,7 +15,7 @@ namespace RESITALMVC.MODEL.Entities
 
         public Guid RoomID { get; set; }
         public virtual Room Rooms   { get; set; }
-        public virtual List<Price> Price { get; set; }
+        public virtual List<Price2> Price { get; set; }
 
 
     }

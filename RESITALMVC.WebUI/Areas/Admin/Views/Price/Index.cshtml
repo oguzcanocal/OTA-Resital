@@ -1,70 +1,117 @@
-﻿@model IEnumerable<RESITALMVC.MODEL.Entities.Price>
+﻿
 @{
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_LayoutPage.cshtml";
 }
 
-<!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-        <div class="container-fluid">
-            <div class="row mb-2">
-                <div class="col-sm-6">
-                    <h1>Fiyat Ekleme</h1>
-                </div>
-                <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Ana Sayfa</a></li>
-                        <li class="breadcrumb-item active">Fiyat Ekleme</li>
-                    </ol>
-                </div>
-            </div>
-        </div><!-- /.container-fluid -->
-    </section>
 
 
-    @if (Model != null)
-    {
-        <div class="card-body p-0">
-            <table id="roomTable" class="table">
-                <thead>
-                    <tr>
-                        <th>Başlangıç Tarihi</th>
-                        <th>Bitiş Tarihi</th>
-                        <th>Yetişkin Fiyatı</th>
-                        <th>Çocuk Fiyatı</th>
-                    </tr>
-                </thead>
-                <tbody>
+
+<script>
+
+    $(document).ready(function () {
+        var prices = [];
+        $.ajax({
+
+            type: "GET",
+            url: "/Price/GetPrices",
+            success: function (data) {
+                $.each(data, function (i, v) {
+                    prices.push({
+                        price: v.AdultPrice,
+                        start: moment(v.StartDate),
+                        end: v.EndDate != null ? moment(v.EndDate) : null,
+                        color: v.ThemeColor,
+                        allDay: v.IsFullDay
+                    });
+                })
+                GenerateCalendar(prices);
+            },
+            error: function (error) {
+                alert('failed');
+            }
+
+        })
 
 
-                    @foreach (var item in Model)
-                    {
-                        <tr>
-                            <td>@item.StartDate</td>
-                            <td>@item.EndDate</td>
-                            <td>@item.AdultPrice</td>
-                            <td>@item.KidPrice</td>
-                            <td>
-                                <a href=@Url.Action("Edit","Rate", new { id = item.ID}) class="btn btn-primary">Güncelle</a>
-                                <a href=@Url.Action("Delete","Rate", new { id = item.ID}) class="btn btn-danger">Sil</a>
-                                <a href=@Url.Action("Index","Price", new { id = item.ID}) class="btn btn-success">Fiyat Gir</a>
-                            </td>
-                        </tr>
-                    }
+        function GenerateCalendar(prices) {
+
+            $('#calendar').fullCalendar({
+                contentHeight: 600,
+                defaultDate: new Date(),
+                timeFormat: 'dd/MM/yyyy',
+                header: {
+                    left: 'prev,next today',
+                    center: 'title',
+                    right: 'month,basicWeek,basicDay,agenda'
+                },
+                priceLimit: true,
+                priceColor: '#378006',
+                prices: prices,
+                priceClick: function (calPrice, jsPrice, view) {
+                    $('#myModal #priceTitle').text(calPrice)
+                }
+            })
+
+        }
+
+    })
 
 
-                </tbody>
-            </table>
+</script>
+}
+<body class="hold-transition sidebar-mini">
+    <!-- Site wrapper -->
+    <div class="wrapper">
+        <div class="content-wrapper">
+            <!-- Content Header (Page header) -->
+            <section class="content-header">
+                <div class="container-fluid">
+                    <div class="row mb-2">
+                        <div class="col-sm-6">
+                            <h1>Fiyat Planı Ekleme</h1>
+                        </div>
+                        <div class="col-sm-6">
+                            <ol class="breadcrumb float-sm-right">
+                                <li class="breadcrumb-item"><a href="#">AnaSayfa</a></li>
+                                <li class="breadcrumb-item active">Fiyat Takvimi/li>
+                            </ol>
+                        </div>
+                    </div>
+                </div><!-- /.container-fluid -->
+                <section class="content">
+                    <div class="card">
+                        <div class="col-md-12 card-body">
+                            <div class="card card-primary">
+                                <div class="card-header">Fiyat Takvimi</div>
+                                <div class="card-body">
+                                    <div id='calendar'></div>
+                                    <div id="myModal" class="modal fade" role="dialog">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <button type="button"class="close"data-dismiss="modal">&times;</button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <p id="PDetails"></p>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button"class="btn btn-default"data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </section>
+            </section>
         </div>
-    }
+    </div>
+</body>
 
-    else
-    {
-        <div class="alert alert-secondary" role="alert" style="margin:15px">
-            Fiyat Girilmemiştir.
-        </div>
-    }
 
-</div>
+
+

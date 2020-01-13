@@ -8,7 +8,7 @@ namespace RESITALMVC.WebUI.Areas.Admin.VM
 {
     public class PriceTypesModel
     {
-        public IEnumerable<Price> PriceTypes{ get; set; }
+        public IEnumerable<Price2> PriceTypes{ get; set; }
     }
 
     public class PriceTypesCreateModel

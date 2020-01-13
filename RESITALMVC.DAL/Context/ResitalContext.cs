@@ -24,7 +24,7 @@ namespace RESITALMVC.DAL.Context
             modelBuilder.Configurations.Add(new HotelMap());
             modelBuilder.Configurations.Add(new RoomMap());
             modelBuilder.Configurations.Add(new RateMap());
-            modelBuilder.Configurations.Add(new PriceMap());
+            modelBuilder.Configurations.Add(new PriceMap2());
 
             base.OnModelCreating(modelBuilder);
         }
@@ -34,7 +34,7 @@ namespace RESITALMVC.DAL.Context
         public DbSet<Hotel> Hotels { get; set; }
         public DbSet<Room> Rooms { get; set; }
         public DbSet<Rate> Rates { get; set; }
-        public DbSet<Price> Prices { get; set; }
+        public DbSet<Price2> Prices2 { get; set; }
     }
 
     

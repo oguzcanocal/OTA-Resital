@@ -1,6 +1,4 @@
 ﻿using RESITALMVC.DAL.Context;
-using RESITALMVC.MODEL.Entities;
-using RESITALMVC.SERVICE.Option;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,48 +9,18 @@ namespace RESITALMVC.WebUI.Areas.Admin.Controllers
 {
     public class PriceController : Controller
     {
-        PriceService ps = new PriceService();
         ResitalContext rs = new ResitalContext();
         // GET: Admin/Price
         public ActionResult Index()
         {
-            var prices = rs.Prices.ToList();
-
-            return View(prices);
+            return View();
         }
 
-        public ActionResult Create(Guid RateID)
+        public JsonResult GetPrices()
         {
-            Price price = new Price();
-            price.RateID = RateID;
-            //var date = DateTime.Now;
-            //price.StartDate = date.Date;
-            //price.EndDate = date.Date;
-            return View(price);
+            var prices = rs.Prices2.ToList();
+            return new JsonResult { Data = prices, JsonRequestBehavior = JsonRequestBehavior.AllowGet };
         }
-
-        [HttpPost]
-        public ActionResult Create(Price model)
-        {
-            try
-            {
-                if (ModelState.IsValid)
-                {
-                    model.ID = Guid.NewGuid();
-                    ps.Add(model);
-                    return RedirectToAction("Index", "Price");
-                }
-
-                return View(model);
-            }
-            catch (Exception e)
-            {
-
-                ViewBag.Error = e.InnerException;
-                return View(model);
-            }
-        }
-
 
     }
 }

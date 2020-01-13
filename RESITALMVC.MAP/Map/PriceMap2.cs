@@ -8,14 +8,16 @@ using System.Threading.Tasks;
 
 namespace RESITALMVC.MAP.Map
 {
-    public class PriceMap:CoreMap<Price>
+    public class PriceMap2:CoreMap<Price2>
     {
-        public PriceMap()
+        public PriceMap2()
         {
-            Property(x => x.AdultPrice).IsOptional();
-            Property(x => x.KidPrice).IsOptional();
+            ToTable("dbo.Prices2");
+            Property(x => x.AdultPrice).IsRequired();
+            Property(x => x.KidPrice).IsRequired();
             Property(x => x.StartDate).IsRequired();
             Property(x => x.EndDate).IsRequired();
+
         }
     }
 }

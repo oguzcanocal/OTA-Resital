@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace RESITALMVC.MODEL.Entities
 {
-    public class Price:CoreEntity
+    public class Price2:CoreEntity
     {
-        [DisplayFormat(DataFormatString = "{0:dd-MMM-yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime StartDate { get; set; }
 
-        [DisplayFormat(DataFormatString = "{0:dd-MMM-yyyy}", ApplyFormatInEditMode = true)]
+        [DisplayFormat(DataFormatString = "{dd/MM/yyyy}", ApplyFormatInEditMode = true)]
         public DateTime EndDate { get; set; }
 
         public double AdultPrice { get; set; }

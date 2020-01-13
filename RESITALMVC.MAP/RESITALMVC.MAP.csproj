@@ -52,7 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Map\HotelMap.cs" />
-    <Compile Include="Map\PriceMap.cs" />
+    <Compile Include="Map\PriceMap2.cs" />
     <Compile Include="Map\RateMap.cs" />
     <Compile Include="Map\RoomMap.cs" />
     <Compile Include="Map\UserMap.cs" />
